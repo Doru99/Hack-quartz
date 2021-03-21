@@ -1,0 +1,150 @@
+{% extends 'dashboard_menus.html' %}
+{% load static %}
+
+{% block title %}
+{{type}}
+{%endblock%}
+
+{%block scripts%}
+<script src="{% static '/js/dragdrop.js' %}"></script>
+<script src="{% static '/js/online-store.js' %}"></script>
+{%endblock%}
+
+{%block functions%}
+<li class="dashboard_li"><a href="#"><img src="{% static '/images/build.png' %}" alt="buils" class="icon">Build</a></li>
+<!-- Nu schimbati numele functiilor fara sa schimbati parametrul functiei -->
+
+<li class="build_li" onclick="addFunction(0,'List Products')">
+    <div class="tooltip">
+        <a href="#"><i class="fa fa-circle"></i>List Products</a>
+        <span class="tooltiptext">
+            Adaugarea acestui element in lista de widget-uri ale site-ului ofera posibilitatea 
+            de a adauga produse in baza de date a magazinului online.
+        </span>
+    </div>
+</li>
+<li class="build_li" onclick="addFunction(1,'Cart')">
+    <div class="tooltip">
+        <a href="#"><i class="fa fa-circle"></i>Cart</a>
+        <span class="tooltiptext">
+            Elementul de Cart pune la dispozitia clientului adaugarea 
+            si/sau stergerea de produse in/din cosul de cumparaturi. Daca acest element nu este
+            adaugat, clientul nu poate comanda produse de pe site.
+        </span>
+    </div>
+</li>
+<li class="build_li" onclick="addFunction(2,'Categories')">
+    <div class="tooltip">
+        <a href="#"><i class="fa fa-circle"></i>Categories</a>
+        <span class="tooltiptext">
+            Widget-ul Categories pune la dispozitie organizarea 
+            produselor din magazin pe diferite categorii pe care le alegti dumneavoastra.
+        </span>
+    </div>
+</li>
+<li class="build_li" onclick="addFunction(3,'Currency')">
+    <div class="tooltip">
+        <a href="#"><i class="fa fa-circle"></i>Currency</a>
+        <span class="tooltiptext">
+            Acest element ofera clientilor site-ului dumneavoastra posibilitatea de vizualizare si achitare
+            a produselor cu diferite unitati monetare.
+        </span>
+    </div>
+</li>
+<li class="build_li" onclick="addFunction(4,'Templates')">
+    <div class="tooltip">
+        <a href="#"><i class="fa fa-circle"></i>Templates</a>
+        <span class="tooltiptext">
+            Adaugarea acestui element ofera posibilitatea de a vizualiza continutul
+            site-ului printr-o interfata prietenoasa pentru client. Daca acest element
+            lipseste, atunci continutul site-ului va fi redat intr-o maniera greu
+            de descifrat.
+        </span>
+    </div>
+</li>
+{%endblock%}
+
+{% block right_column %}
+
+<form action="save/" method="POST">
+    {% csrf_token %}
+    {{form}}
+    <input type="submit" value="Save">
+</form>
+<h1>{{name}}</h1>
+<p>Tip aplicatie: {{type}}</p>
+
+<div class="dropzone card" id='0' draggable="true">
+    <i class="fa fa-times" onclick="removeFunction(0,'List Products')"></i>
+    <h2>Lista Produse</h2>
+    <i class="fa fa-dropbox"></i>
+    <button id="btn_0" class="btn_functions">Edit</button>
+</div>
+<div class="dropzone card" id='1' draggable="true">
+    <i class="fa fa-times" onclick="removeFunction(1,'Cart')"></i>
+    <h2>Cart</h2>
+    <i class="fa fa-shopping-cart"></i>
+    <button id="btn_1" class="btn_functions">Edit</button>
+</div>
+<div class="dropzone card" id='2' draggable="true">
+    <i class="fa fa-times" onclick="removeFunction(2,'Categories')"></i>
+    <h2>Categories</h2>
+    <i class="fa fa-tags"></i>
+    <button id="btn_2" class="btn_functions">Edit</button>
+</div>
+<div class="dropzone card" id='3' draggable="true">
+    <i class="fa fa-times"  onclick="removeFunction(3,'Currency')"></i>
+    <h2>Currency</h2>
+    <i class="fa fa-money"></i>
+    <button id="btn_3" class="btn_functions">Edit</button>
+</div>
+<div class="dropzone card" id='4' draggable="true">
+    <i class="fa fa-times"  onclick="removeFunction(4,'Templates')"></i>
+    <h2>Templates</h2>
+    <i class="fa fa-window-maximize"></i>
+    <button id="btn_4" class="btn_functions">Edit</button>
+</div>
+
+{%if 'List Products' in functions%}
+    <script>
+        addFunction(0,'List Products');
+    </script>
+{%endif%}
+
+{%if 'Cart' in functions%}
+    <script>
+        addFunction(1,'Cart');
+    </script>
+{%endif%}
+
+{%if 'Categories' in functions%}
+    <script>
+        addFunction(2,'Categories');
+    </script>
+{%endif%}
+
+{%if 'Currency' in functions%}
+    <script>
+        addFunction(3,'Currency');
+    </script>
+{%endif%}
+
+{%if 'Templates' in functions%}
+    <script>
+        addFunction(4,'Templates');
+    </script>
+{%endif%}
+
+
+<div id="popup" class="modal">
+    <div id="function_0" class="card2 modal-content">
+        <form action="product/" method="POST">
+            {% csrf_token %}
+            {{productform}}
+            <input type="submit" value="Save">
+        </form>
+    </div>
+</div>
+<script src="{% static '/js/function_form.js' %}"></script>
+{% endblock %}
+

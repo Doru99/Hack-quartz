@@ -1,0 +1,25 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static '/css/style_nav_bar.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    {% block style %}
+    {% endblock %}
+</head>
+<body>
+    <ul class="nav_bar_ul">
+        <li class="nav_icon"><a href="/dashboard/"><img src="{% static '/images/Logo.png' %}" alt="logo" class="logo"></a></li>
+        {% if request.path == "/accounts/login/" %}
+        <li class="nav_bar_li"><a href="/accounts/registration/">Register</a></li>
+        {% elif request.path == "/accounts/registration/" %}
+        <li class="nav_bar_li"><a href="/accounts/login/">Login</a></li>
+        {% else %}
+            <li class="nav_bar_li"><a href="/accounts/logout/">Logout</a></li>
+            <li class="nav_bar_li"><a href="/dashboard/">Home</a></li>
+        {%endif%}
+    </ul>
+    {% block content %}
+    {% endblock%}
+</body>

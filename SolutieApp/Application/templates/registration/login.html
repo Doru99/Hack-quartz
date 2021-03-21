@@ -1,0 +1,23 @@
+{% extends 'nav_bar.html' %}
+{% load static %}
+
+{% block title%}
+Login
+{% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" type="text/css" href="{% static '/css/style_form.css' %}">
+{% endblock %}
+
+{% block content %}
+<div>
+    <form class="vertical-center" action="/accounts/login/" method="post">
+        <div class="imgcontainer">
+            <img src="{% static 'images/Logo-black.png' %}" alt="login_logo" class="login_logo">
+        </div>
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Login">
+    </form>
+</div>
+{% endblock %}

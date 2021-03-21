@@ -1,0 +1,60 @@
+form {
+    padding: 30px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 5px 5px 20px rgba(25, 25, 25, 0.3);
+    width: 41%;
+    position: absolute;
+    top:20%;
+}
+
+input[type=text], input[type=password]{
+  display: block;
+  width: 100%;
+  padding: 12px 20px;
+  margin: 20px auto;
+  border-radius: 5px;
+  border: 1px solid #020B20;
+  box-sizing: border-box;
+}
+
+input[type=submit]{
+  display: block;
+  transition-duration: 0.4s;
+  border-radius: 100px;
+  background-color: #FFF;
+  border: 2px solid #020B20;
+  color: #020B20;
+  font-family: Roboto, sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+  padding: 14px 20px;
+  margin: auto auto;
+  cursor: pointer;
+  width:150px;
+}
+
+input[type=submit]:hover{
+  background-color: #020B20;
+  color: #EDEFF5;
+}
+
+.vertical-center {
+    position: relative;
+    margin: 100px auto 0 auto;
+}
+
+.forms-style {
+    position: relative;
+}
+
+.login_logo{
+  margin: auto auto;
+  display: block;
+  height: auto;
+}
+
+.imgcontainer {
+  text-align: center;
+  margin: 8% 0;
+}

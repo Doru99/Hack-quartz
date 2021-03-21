@@ -1,0 +1,24 @@
+﻿{% extends 'nav_bar.html' %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" type="text/css" href="{% static '/css/style_dashboard_menus.css' %}">
+    {% block scripts%}
+    {%endblock%}
+{% endblock %}
+
+{% block content %}
+
+<div class = "left_column">
+    <ul class="dashboard_ul">
+        <li class="dashboard_li"><a href="/dashboard/"><img src="{% static '/images/home.png' %}" alt="home" class="icon">My Sites</a></li>
+        <li class="dashboard_li"><a href="#"><img src="{% static '/images/profile.png' %}" alt="profile" class="icon">Profile</a></li>
+        {%block functions%}
+        {%endblock%}  
+    </ul>
+</div>
+<div class = "right_column">
+    {% block right_column %} 
+    {% endblock %}
+</div>
+{% endblock %}

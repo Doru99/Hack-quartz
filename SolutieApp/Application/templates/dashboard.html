@@ -1,0 +1,35 @@
+{% extends 'dashboard_menus.html' %}
+
+{% load static %}
+
+{% block title %}
+Dashboard
+{%endblock%}
+
+{% block right_column%}
+<div class="card">
+    <h1>Add Site</h1>
+    <a href="/build/forms/"><img src="{% static '/images/add.png' %}" alt="add" class="add"></a>
+</div>
+
+{%for site in sites%}
+<div class="card">
+    <h1>{{site.title}}</h1>
+    <form action="site/" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="title" value="{{site.title}}">
+        <input type="submit" value="View" style="display:inline-block;">
+    </form>
+    <form action="/build/" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="title" value="{{site.title}}">
+        <input type="submit" name="submit2" value="Edit" style="display:inline-block;">
+    </form>
+</div>
+<script>
+if (res.charCodeAt(0) === 0xFEFF) {
+res = res.substr(1);
+}
+</script>
+{%endfor%}
+{%endblock%}
